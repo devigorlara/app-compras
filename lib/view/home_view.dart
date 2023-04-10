@@ -1,7 +1,7 @@
-import 'dart:math';
-
 import 'package:app_compras/constant/text_widget.dart';
 import 'package:app_compras/constant/colors.dart';
+import 'package:app_compras/utilities/dimensions.dart';
+import 'package:app_compras/view/food_body_view.dart';
 import 'package:flutter/material.dart';
 
 class HomeView extends StatefulWidget {
@@ -14,38 +14,52 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
+    print(MediaQuery.of(context).size.width);
     return SafeArea(
       child: Scaffold(
         body: Column(
           children: [
             Container(
-              margin: EdgeInsets.only(bottom: 20, top: 10),
-              padding: EdgeInsets.only(left: 20, right: 20),
+              margin: EdgeInsets.only(
+                  bottom: Dimensions.height20, top: Dimensions.height10),
+              padding: EdgeInsets.only(
+                  left: Dimensions.width20, right: Dimensions.width20),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Column(
                     children: [
                       bigText('Paraná', color: AppColors.mainColor),
-                      smallText("Toledo")
+                      Row(
+                        children: [
+                          smallText("Toledo",
+                              color: AppColors.blackColorWithOpacity),
+                          Icon(
+                            Icons.arrow_drop_down_rounded,
+                            size: Dimensions.width15,
+                          )
+                        ],
+                      )
                     ],
                   ),
                   Center(
                     child: Container(
-                      height: 45,
-                      width: 45,
+                      height: Dimensions.height45,
+                      width: Dimensions.height45,
                       decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
+                          borderRadius:
+                              BorderRadius.circular(Dimensions.width15),
                           color: Color(0xFF89dad0)),
-                      child:  Icon(
-                          Icons.search,
-                          color: Colors.white,
+                      child: Icon(
+                        Icons.search,
+                        color: Colors.white,
                       ),
                     ),
                   )
                 ],
               ),
-            )
+            ),
+            FoodBodyView(),
           ],
         ),
       ),

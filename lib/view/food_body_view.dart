@@ -58,6 +58,76 @@ class _FoodBodyViewState extends State<FoodBodyView> {
                 borderRadius: BorderRadius.circular(5.0)),
           ),
         ),
+        SizedBox(height: Dimensions.height45),
+        Container(
+          margin: EdgeInsets.only(left: Dimensions.width30),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              bigText("Popular"),
+              SizedBox(width: Dimensions.width10),
+              Container(
+                  margin: EdgeInsets.only(bottom: Dimensions.height3),
+                  child: bigText(".", color: AppColors.blackColorWithOpacity)),
+              SizedBox(width: Dimensions.width10),
+              Container(
+                  margin: EdgeInsets.only(bottom: Dimensions.height012),
+                  child: smallText("Food pairing")),
+            ],
+          ),
+        ),
+        SizedBox(height: Dimensions.height20),
+        Container(
+          height: 900,
+          child: ListView.builder(
+            physics: NeverScrollableScrollPhysics(),
+            itemCount: 10,
+            itemBuilder: (context, index) {
+              return Container(
+                  margin: EdgeInsets.symmetric(
+                      horizontal: Dimensions.width20,
+                      vertical: Dimensions.height10),
+                  child: Row(
+                    children: [
+                      Container(
+                        height: Dimensions.height120,
+                        width: Dimensions.height120,
+                        decoration: BoxDecoration(
+                            borderRadius:
+                                BorderRadius.circular(Dimensions.radius20),
+                            color: Colors.orange,
+                            image: DecorationImage(
+                              image: AssetImage("assets/images/food3.jpg"),
+                              fit: BoxFit.cover,
+                            )),
+                      ),
+                      Expanded(
+                        child: Container(
+                          height: Dimensions.height100,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.only(
+                                topRight: Radius.circular(Dimensions.radius20),
+                                bottomRight:
+                                    Radius.circular(Dimensions.radius20),
+                              ),
+                              color: Colors.white,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Color(0xFFe8e8e8),
+                                  blurRadius: 5,
+                                  offset: Offset(0, 5),
+                                ),
+                              ]),
+                          child: Column(
+                            children: [],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ));
+            },
+          ),
+        ),
       ],
     );
   }

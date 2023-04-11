@@ -53,13 +53,14 @@ class _HomeViewState extends State<HomeView> {
                       child: Icon(
                         Icons.search,
                         color: Colors.white,
+                        size: Dimensions.iconSize24,
                       ),
                     ),
                   )
                 ],
               ),
             ),
-            FoodBodyView(),
+            Expanded(child: SingleChildScrollView(child: FoodBodyView())),
           ],
         ),
       ),

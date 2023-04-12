@@ -1,4 +1,4 @@
-import 'package:app_compras/constant/text_widget.dart';
+import 'package:app_compras/widgets/text.dart';
 import 'package:app_compras/constant/colors.dart';
 import 'package:app_compras/utilities/dimensions.dart';
 import 'package:app_compras/view/food_body_view.dart';

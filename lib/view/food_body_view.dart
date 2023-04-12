@@ -1,5 +1,6 @@
 import 'package:app_compras/constant/colors.dart';
-import 'package:app_compras/constant/text_widget.dart';
+import 'package:app_compras/widgets/column_details_food.dart';
+import 'package:app_compras/widgets/text.dart';
 import 'package:app_compras/utilities/dimensions.dart';
 import 'package:app_compras/widgets/icon_and_text.dart';
 import 'package:dots_indicator/dots_indicator.dart';
@@ -77,56 +78,80 @@ class _FoodBodyViewState extends State<FoodBodyView> {
           ),
         ),
         SizedBox(height: Dimensions.height20),
-        Container(
-          height: 900,
-          child: ListView.builder(
-            physics: NeverScrollableScrollPhysics(),
-            itemCount: 10,
-            itemBuilder: (context, index) {
-              return Container(
-                  margin: EdgeInsets.symmetric(
-                      horizontal: Dimensions.width20,
-                      vertical: Dimensions.height10),
-                  child: Row(
-                    children: [
-                      Container(
-                        height: Dimensions.height120,
-                        width: Dimensions.height120,
+        ListView.builder(
+          physics: NeverScrollableScrollPhysics(),
+          shrinkWrap: true,
+          itemCount: 10,
+          itemBuilder: (context, index) {
+            return Container(
+                margin: EdgeInsets.symmetric(
+                    horizontal: Dimensions.width20,
+                    vertical: Dimensions.height10),
+                child: Row(
+                  children: [
+                    Container(
+                      height: Dimensions.listViewImgSize,
+                      width: Dimensions.listViewImgSize,
+                      decoration: BoxDecoration(
+                          borderRadius:
+                              BorderRadius.circular(Dimensions.radius20),
+                          color: Colors.orange,
+                          image: DecorationImage(
+                            image: AssetImage("assets/images/food3.jpg"),
+                            fit: BoxFit.cover,
+                          )),
+                    ),
+                    Expanded(
+                      child: Container(
+                        height: Dimensions.listViewTextContSize,
                         decoration: BoxDecoration(
-                            borderRadius:
-                                BorderRadius.circular(Dimensions.radius20),
-                            color: Colors.orange,
-                            image: DecorationImage(
-                              image: AssetImage("assets/images/food3.jpg"),
-                              fit: BoxFit.cover,
-                            )),
-                      ),
-                      Expanded(
-                        child: Container(
-                          height: Dimensions.height100,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.only(
-                                topRight: Radius.circular(Dimensions.radius20),
-                                bottomRight:
-                                    Radius.circular(Dimensions.radius20),
+                            borderRadius: BorderRadius.only(
+                              topRight: Radius.circular(Dimensions.radius20),
+                              bottomRight: Radius.circular(Dimensions.radius20),
+                            ),
+                            color: Colors.white,
+                            boxShadow: [
+                              BoxShadow(
+                                color: Color(0xFFe8e8e8),
+                                blurRadius: 5,
+                                offset: Offset(0, 5),
                               ),
-                              color: Colors.white,
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Color(0xFFe8e8e8),
-                                  blurRadius: 5,
-                                  offset: Offset(0, 5),
-                                ),
-                              ]),
+                            ]),
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: Dimensions.width10,
+                              vertical: Dimensions.height10),
                           child: Column(
-                            children: [],
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              bigText(
+                                  "Nutritious fruit cereal made for FruitLoops"),
+                              SizedBox(height: Dimensions.height10),
+                              smallText("With natural ingredients"),
+                              SizedBox(height: Dimensions.height10),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  iconAndTextWidget("Normal",
+                                      Icons.circle_sharp, AppColors.iconColor1),
+                                  iconAndTextWidget("1.7km", Icons.location_on,
+                                      AppColors.mainColor),
+                                  iconAndTextWidget(
+                                      "32min",
+                                      Icons.access_time_rounded,
+                                      AppColors.iconColor2),
+                                ],
+                              ),
+                            ],
                           ),
                         ),
                       ),
-                    ],
-                  ));
-            },
-          ),
+                    ),
+                  ],
+                ));
+          },
         ),
       ],
     );
@@ -205,42 +230,7 @@ class _FoodBodyViewState extends State<FoodBodyView> {
                   left: Dimensions.width15,
                   right: Dimensions.width15),
               width: MediaQuery.of(context).size.width,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  bigText("Food name"),
-                  SizedBox(height: Dimensions.height10),
-                  Row(
-                    children: [
-                      Wrap(
-                        children: List.generate(
-                            5,
-                            (index) => Icon(
-                                  Icons.star,
-                                  color: AppColors.mainColor,
-                                  size: 14,
-                                )),
-                      ),
-                      SizedBox(width: Dimensions.width10),
-                      smallText("4.5"),
-                      SizedBox(width: Dimensions.width10),
-                      smallText("1285 comments"),
-                    ],
-                  ),
-                  SizedBox(height: Dimensions.height20),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      IconAndTextWidget(
-                          "Normal", Icons.circle_sharp, AppColors.iconColor1),
-                      IconAndTextWidget(
-                          "1.7km", Icons.location_on, AppColors.mainColor),
-                      IconAndTextWidget("32min", Icons.access_time_rounded,
-                          AppColors.iconColor2),
-                    ],
-                  ),
-                ],
-              ),
+              child: columnDetailsFood("Food name"),
             ),
           ),
         ),

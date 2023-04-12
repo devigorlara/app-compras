@@ -7,4 +7,7 @@ class AppColors {
   static final Color textColor = Color(0xFFccc7c5);
   static final Color iconColor1 = Color(0xFFffd28d);
   static final Color iconColor2 = Color(0xFFfcab88);
+  static final Color buttonBackgroudColor = Color(0xFFf7f6f4);
+  static final Color signColor = Color(0xFFa9a29f);
+  static final Color paraColor = Color(0xFF8f837f);
 }

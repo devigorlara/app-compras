@@ -1,8 +1,8 @@
-import 'package:app_compras/constant/text_widget.dart';
+import 'package:app_compras/widgets/text.dart';
 import 'package:app_compras/utilities/dimensions.dart';
 import 'package:flutter/material.dart';
 
-Row IconAndTextWidget(String label, IconData icon, Color? iconColor,
+Row iconAndTextWidget(String label, IconData icon, Color? iconColor,
     {double? size}) {
   return Row(
     children: [

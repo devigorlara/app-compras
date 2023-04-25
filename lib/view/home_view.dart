@@ -14,7 +14,6 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
-    print(MediaQuery.of(context).size.width);
     return SafeArea(
       child: Scaffold(
         body: Column(

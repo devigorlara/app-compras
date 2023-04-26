@@ -1,21 +1,28 @@
 import 'package:app_compras/data/models/products_model.dart';
 import 'package:app_compras/global/constant/colors.dart';
+import 'package:app_compras/global/constant/route.dart';
 import 'package:app_compras/global/utilities/dimensions.dart';
 import 'package:app_compras/global/widgets/app_icon.dart';
 import 'package:app_compras/global/widgets/column_details_food.dart';
 import 'package:app_compras/global/widgets/expandable_text.dart';
-import 'package:app_compras/global/widgets/icon_and_text.dart';
 import 'package:app_compras/global/widgets/text.dart';
 import 'package:app_compras/modules/popular/controllers/popular_product_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class PopularFoodDetailsView extends GetView<PopularProductController>{
+  final Products product;
+
+  PopularFoodDetailsView(this.product);
+
   @override
   Widget build(BuildContext context) {
-    Products product = controller.popularProductList[controller.index];
+    controller.setTotal(double.parse('${product.price}'));
     return SafeArea(
       child: Scaffold(
+        appBar: new AppBar(
+              automaticallyImplyLeading: false,
+            ),
         backgroundColor: Colors.white,
         body: Stack(
           children: [
@@ -40,7 +47,10 @@ class PopularFoodDetailsView extends GetView<PopularProductController>{
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   InkWell(
-                    onTap:() => Get.back(),
+                    onTap:() { 
+                      Get.back();
+                      controller.reset();
+                    },
                     child: appIcon(Icons.arrow_back_ios)),
                   appIcon(Icons.shopping_cart_checkout_outlined)
                 ],
@@ -110,8 +120,8 @@ class PopularFoodDetailsView extends GetView<PopularProductController>{
                 ),
                 child: Row(
                   children: [
-                    InkWell(
-                      onTap: () {
+                    GestureDetector(
+                      onTap:() {
                         controller.decrementQuant();
                       },
                       child: Icon(
@@ -122,8 +132,8 @@ class PopularFoodDetailsView extends GetView<PopularProductController>{
                     SizedBox(width: Dimensions.width10 / 2),
                     Obx(() => bigText("${controller.quant.value}")),
                     SizedBox(width: Dimensions.width10 / 2),
-                    InkWell(
-                      onTap: () { 
+                    GestureDetector(
+                      onTap:() {
                         controller.incrementQuant();
                       },
                       child: Icon(
@@ -142,7 +152,7 @@ class PopularFoodDetailsView extends GetView<PopularProductController>{
                   borderRadius: BorderRadius.circular(Dimensions.radius20),
                   color: AppColors.mainColor,
                 ),
-                child: Obx(() => bigText("\$${controller.total.value} | Add to cart", color: Colors.white)),
+                child: Obx(() => bigText("\$ ${controller.total.value} | Add to cart", color: Colors.white)),
               ),
             ],
           ),

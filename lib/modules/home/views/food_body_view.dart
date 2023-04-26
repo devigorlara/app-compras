@@ -1,6 +1,7 @@
 import 'package:app_compras/global/constant/colors.dart';
 import 'package:app_compras/global/constant/route.dart';
 import 'package:app_compras/modules/popular/controllers/popular_product_controller.dart';
+import 'package:app_compras/modules/popular/views/popular_food_details_view.dart';
 import 'package:app_compras/modules/recommended/controllers/recommended_controller.dart';
 import 'package:app_compras/data/models/products_model.dart';
 import 'package:app_compras/modules/recommended/views/recommended_food_detail.dart';
@@ -25,7 +26,7 @@ class _FoodBodyViewState extends State<FoodBodyView> {
   double _scaleFactor = 0.8;
   double _heigth = Dimensions.pageViewContainer;
   final PopularProductController popularController = Get.put(PopularProductController());
-  final RecommendedController recommendedController = Get.put(RecommendedController());
+  final RecommendedController recommendedController = Get.put(RecommendedController(), permanent: true);
 
   @override
   void initState() {
@@ -107,7 +108,7 @@ class _FoodBodyViewState extends State<FoodBodyView> {
                   }
                   return GestureDetector(
                     onTap: () {
-                      Get.toNamed(Routes.popularFoodDetailsRoute);
+                      Get.to(()=>PopularFoodDetailsView(product));
                     },
                     child: Container(
                         margin: EdgeInsets.symmetric(
@@ -223,6 +224,7 @@ class _FoodBodyViewState extends State<FoodBodyView> {
         return GestureDetector(
           onTap: () {
             controller.setIndex(pageController.page!.toInt());
+            controller.priceTotal();
             Get.toNamed(Routes.recommendedFoodDetailsRoute);
           },
           child: Transform(

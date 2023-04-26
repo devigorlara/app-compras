@@ -26,10 +26,10 @@ final getPages = [
     name: Routes.homeRoute,
     page: () => HomeView(),
   ),
-  GetPage(
+  /*GetPage(
     name: Routes.popularFoodDetailsRoute,
     page: () => PopularFoodDetailsView(),
-  ),
+  ),*/
   GetPage(
     name: Routes.recommendedFoodDetailsRoute,
     page: () => RecommendedFoodView(),

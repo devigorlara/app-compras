@@ -19,11 +19,18 @@ class RecommendedFoodView extends GetView<RecommendedController> {
         backgroundColor: Colors.white,
         body: CustomScrollView(slivers: [
           SliverAppBar(
+            automaticallyImplyLeading: false,
             toolbarHeight: Dimensions.height80,
             title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                appIcon(Icons.clear),
+                GestureDetector(
+                  onTap: () {
+                    controller.reset();
+                    Get.back();
+                  },
+                  child: appIcon(Icons.clear)
+                ),
                 appIcon(
                   Icons.shopping_cart_outlined,
                 )

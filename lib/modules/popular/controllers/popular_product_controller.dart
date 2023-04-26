@@ -7,9 +7,10 @@ class PopularProductController extends GetxController {
   PopularProductRepo popularProductRepo = Get.put(PopularProductRepo(apiClient: Get.find()));
 
   List<dynamic> _popularProductList = [];
-  int index = 0;
-  RxInt quant = 0.obs;
+
+  RxInt quant = 1.obs;
   RxDouble total = 0.0.obs;
+  RxDouble price_item = 0.0.obs;
   List<dynamic> get popularProductList => _popularProductList;
   @override
   void onInit(){
@@ -22,19 +23,23 @@ class PopularProductController extends GetxController {
     _popularProductList.addAll(response.data as List<dynamic>);
     update();
   }
-  void setIndex(int i){
-    index = i;
+  void setTotal(double total_price){
+    price_item.value = total_price;
+    total.value = price_item.value;
   }
   void incrementQuant(){
-    quant.value++;
+    quant++;
     priceTotal();
   }
   void decrementQuant(){
-    quant.value--;
+    if(quant.value > 1) quant--;
     priceTotal();
   }
   void priceTotal(){
-    Products product = _popularProductList[index];
-    total.value = double.parse('${product.price}') * quant.value.toDouble();
+    print(quant.value.toDouble());
+    total.value =  price_item * quant.value.toDouble();
+  }
+  void reset(){
+    quant.value = 0;
   }
 }

@@ -1,5 +1,6 @@
+import 'package:app_compras/data/models/products_model.dart';
 import 'package:app_compras/data/repository/recommended_repo.dart';
-import 'package:app_compras/models/api_response.dart';
+import 'package:app_compras/data/models/api_response.dart';
 import 'package:get/get.dart';
 
 class RecommendedController extends GetxController {
@@ -7,6 +8,9 @@ class RecommendedController extends GetxController {
 
   List<dynamic> _recommendedProductList = [];
   
+  int index = 0;
+  RxInt quant = 0.obs;
+  RxDouble total = 0.0.obs;
   List<dynamic> get recommendedProductList => _recommendedProductList;
   @override
   void onInit(){
@@ -18,5 +22,20 @@ class RecommendedController extends GetxController {
     //print(response.data);
     _recommendedProductList.addAll(response.data as List<dynamic>);
     update();
+  }
+  void setIndex(int i){
+    index = i;
+  }
+  void incrementQuant(){
+    quant.value++;
+    priceTotal();
+  }
+  void decrementQuant(){
+    quant.value--;
+    priceTotal();
+  }
+  void priceTotal(){
+    Products product = _recommendedProductList[index];
+    total.value = double.parse('${product.price}') * quant.value.toDouble();
   }
 }

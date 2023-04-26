@@ -1,6 +1,6 @@
-import 'package:app_compras/constant/api_constant.dart';
-import 'package:app_compras/controllers/login_controller.dart';
-import 'package:app_compras/controllers/popular_product_controller.dart';
+import 'package:app_compras/global/constant/api_constant.dart';
+import 'package:app_compras/modules/login/controllers/login_controller.dart';
+import 'package:app_compras/modules/popular/controllers/popular_product_controller.dart';
 import 'package:app_compras/controllers/product_controller.dart';
 import 'package:app_compras/data/api/api_client.dart';
 import 'package:app_compras/data/repository/popular_product_repo.dart';

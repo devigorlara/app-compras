@@ -1,5 +1,5 @@
 import 'package:app_compras/data/repository/product_repo.dart';
-import 'package:app_compras/models/api_response.dart';
+import 'package:app_compras/data/models/api_response.dart';
 import 'package:get/get.dart';
 
 class ProductController extends GetxController {

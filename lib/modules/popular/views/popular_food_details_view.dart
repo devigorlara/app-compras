@@ -1,22 +1,19 @@
-import 'package:app_compras/constant/colors.dart';
-import 'package:app_compras/utilities/dimensions.dart';
-import 'package:app_compras/widgets/app_icon.dart';
-import 'package:app_compras/widgets/column_details_food.dart';
-import 'package:app_compras/widgets/expandable_text.dart';
-import 'package:app_compras/widgets/icon_and_text.dart';
-import 'package:app_compras/widgets/text.dart';
+import 'package:app_compras/data/models/products_model.dart';
+import 'package:app_compras/global/constant/colors.dart';
+import 'package:app_compras/global/utilities/dimensions.dart';
+import 'package:app_compras/global/widgets/app_icon.dart';
+import 'package:app_compras/global/widgets/column_details_food.dart';
+import 'package:app_compras/global/widgets/expandable_text.dart';
+import 'package:app_compras/global/widgets/icon_and_text.dart';
+import 'package:app_compras/global/widgets/text.dart';
+import 'package:app_compras/modules/popular/controllers/popular_product_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class PopularFoodDetailsView extends StatefulWidget {
-  const PopularFoodDetailsView({super.key});
-
-  @override
-  State<PopularFoodDetailsView> createState() => _PopularFoodDetailsViewState();
-}
-
-class _PopularFoodDetailsViewState extends State<PopularFoodDetailsView> {
+class PopularFoodDetailsView extends GetView<PopularProductController>{
   @override
   Widget build(BuildContext context) {
+    Products product = controller.popularProductList[controller.index];
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -42,7 +39,9 @@ class _PopularFoodDetailsViewState extends State<PopularFoodDetailsView> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  appIcon(Icons.arrow_back_ios),
+                  InkWell(
+                    onTap:() => Get.back(),
+                    child: appIcon(Icons.arrow_back_ios)),
                   appIcon(Icons.shopping_cart_checkout_outlined)
                 ],
               ),
@@ -66,7 +65,7 @@ class _PopularFoodDetailsViewState extends State<PopularFoodDetailsView> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    columnDetailsFood("Food name",
+                    columnDetailsFood("${product.name}",
                         sizeLabel: Dimensions.font26),
                     SizedBox(
                       height: Dimensions.height20,
@@ -79,7 +78,7 @@ class _PopularFoodDetailsViewState extends State<PopularFoodDetailsView> {
                       child: SingleChildScrollView(
                         child: ExpandableText(
                             text:
-                                "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."),
+                                '${product.description}'),
                       ),
                     )
                   ],
@@ -111,16 +110,26 @@ class _PopularFoodDetailsViewState extends State<PopularFoodDetailsView> {
                 ),
                 child: Row(
                   children: [
-                    Icon(
-                      Icons.remove,
-                      color: AppColors.signColor,
+                    InkWell(
+                      onTap: () {
+                        controller.decrementQuant();
+                      },
+                      child: Icon(
+                        Icons.remove,
+                        color: AppColors.signColor,
+                      ),
                     ),
                     SizedBox(width: Dimensions.width10 / 2),
-                    bigText("0"),
+                    Obx(() => bigText("${controller.quant.value}")),
                     SizedBox(width: Dimensions.width10 / 2),
-                    Icon(
-                      Icons.add,
-                      color: AppColors.signColor,
+                    InkWell(
+                      onTap: () { 
+                        controller.incrementQuant();
+                      },
+                      child: Icon(
+                        Icons.add,
+                        color: AppColors.signColor,
+                      ),
                     ),
                   ],
                 ),
@@ -133,7 +142,7 @@ class _PopularFoodDetailsViewState extends State<PopularFoodDetailsView> {
                   borderRadius: BorderRadius.circular(Dimensions.radius20),
                   color: AppColors.mainColor,
                 ),
-                child: bigText("\$10 | Add to cart", color: Colors.white),
+                child: Obx(() => bigText("\$${controller.total.value} | Add to cart", color: Colors.white)),
               ),
             ],
           ),

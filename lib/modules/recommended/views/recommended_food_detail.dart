@@ -1,15 +1,19 @@
-import 'package:app_compras/constant/colors.dart';
-import 'package:app_compras/utilities/dimensions.dart';
-import 'package:app_compras/widgets/app_icon.dart';
-import 'package:app_compras/widgets/expandable_text.dart';
-import 'package:app_compras/widgets/text.dart';
+import 'package:app_compras/global/constant/colors.dart';
+import 'package:app_compras/data/models/products_model.dart';
+import 'package:app_compras/global/utilities/dimensions.dart';
+import 'package:app_compras/global/widgets/app_icon.dart';
+import 'package:app_compras/global/widgets/expandable_text.dart';
+import 'package:app_compras/global/widgets/text.dart';
+import 'package:app_compras/modules/recommended/controllers/recommended_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class RecommendedFoodView extends StatelessWidget {
-  const RecommendedFoodView({super.key});
-
+class RecommendedFoodView extends GetView<RecommendedController> {
+  
   @override
   Widget build(BuildContext context) {
+    final Products product = controller.recommendedProductList[controller.index];
+    
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -30,7 +34,7 @@ class RecommendedFoodView extends StatelessWidget {
               child: Container(
                 width: double.maxFinite,
                 child: Center(
-                    child: bigText("Food name", size: Dimensions.font26)),
+                    child: bigText("${product.name}", size: Dimensions.font26)),
                 padding: EdgeInsets.only(top: 5, bottom: 10),
                 decoration: BoxDecoration(
                   color: Colors.white,
@@ -60,7 +64,7 @@ class RecommendedFoodView extends StatelessWidget {
                   margin: EdgeInsets.symmetric(horizontal: Dimensions.width20),
                   child: ExpandableText(
                     text:
-                        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+                        '${product.description}',
                   ),
                 ),
               ],
@@ -75,23 +79,33 @@ class RecommendedFoodView extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  appIcon(
-                    Icons.remove,
-                    backgroundColor: AppColors.mainColor,
-                    iconColor: Colors.white,
-                    iconSize: Dimensions.iconSize24,
+                  InkWell(
+                    onTap: () {
+                      controller.decrementQuant();
+                    },
+                    child: appIcon(
+                      Icons.remove,
+                      backgroundColor: AppColors.mainColor,
+                      iconColor: Colors.white,
+                      iconSize: Dimensions.iconSize24,
+                    ),
                   ),
                   Container(
                     margin: EdgeInsets.only(top: 5),
-                    child: bigText("\$ 12.88 X 0",
+                    child: Obx(() => bigText("\$ ${product.price} X ${controller.quant.value}",
                         size: Dimensions.font26,
-                        color: AppColors.mainBlackColor),
+                        color: AppColors.mainBlackColor),)
                   ),
-                  appIcon(
-                    Icons.add,
-                    backgroundColor: AppColors.mainColor,
-                    iconColor: Colors.white,
-                    iconSize: Dimensions.iconSize24,
+                  InkWell(
+                    onTap: () {
+                      controller.incrementQuant();
+                    },
+                    child: appIcon(
+                      Icons.add,
+                      backgroundColor: AppColors.mainColor,
+                      iconColor: Colors.white,
+                      iconSize: Dimensions.iconSize24,
+                    ),
                   ),
                 ],
               ),
@@ -127,8 +141,8 @@ class RecommendedFoodView extends StatelessWidget {
                     Container(
                       padding:
                           EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-                      child: bigText("\$ 28 | Add to cart",
-                          size: Dimensions.font26, color: Colors.white),
+                      child: Obx(() => bigText("\$ ${controller.total.value} | Add to cart",
+                          size: Dimensions.font26, color: Colors.white),),
                       decoration: BoxDecoration(
                         borderRadius:
                             BorderRadius.circular(Dimensions.radius20),

@@ -1,7 +1,7 @@
-import 'package:app_compras/widgets/text.dart';
-import 'package:app_compras/constant/colors.dart';
-import 'package:app_compras/utilities/dimensions.dart';
-import 'package:app_compras/view/food_body_view.dart';
+import 'package:app_compras/global/widgets/text.dart';
+import 'package:app_compras/global/constant/colors.dart';
+import 'package:app_compras/global/utilities/dimensions.dart';
+import 'package:app_compras/modules/home/views/food_body_view.dart';
 import 'package:flutter/material.dart';
 
 class HomeView extends StatefulWidget {

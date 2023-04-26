@@ -1,7 +1,7 @@
-import 'package:app_compras/constant/colors.dart';
-import 'package:app_compras/utilities/dimensions.dart';
-import 'package:app_compras/widgets/icon_and_text.dart';
-import 'package:app_compras/widgets/text.dart';
+import 'package:app_compras/global/constant/colors.dart';
+import 'package:app_compras/global/utilities/dimensions.dart';
+import 'package:app_compras/global/widgets/icon_and_text.dart';
+import 'package:app_compras/global/widgets/text.dart';
 import 'package:flutter/material.dart';
 
 Column columnDetailsFood(String label, {double? sizeLabel}) {

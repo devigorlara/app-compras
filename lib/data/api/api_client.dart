@@ -1,7 +1,7 @@
-import 'package:app_compras/constant/api_constant.dart';
-import 'package:app_compras/models/api_response.dart';
-import 'package:app_compras/models/products_model.dart';
-import 'package:app_compras/models/user.dart';
+import 'package:app_compras/global/constant/api_constant.dart';
+import 'package:app_compras/data/models/api_response.dart';
+import 'package:app_compras/data/models/products_model.dart';
+import 'package:app_compras/data/models/user.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:app_compras/models/user.dart';
+import 'package:app_compras/data/models/user.dart';
 import 'package:app_compras/data/repository/user_repo.dart';
-import 'package:app_compras/constant/api_constant.dart';
+import 'package:app_compras/global/constant/api_constant.dart';
 
 class LoginController extends GetxController {
   final UserRepo userRepo = Get.find<UserRepo>();

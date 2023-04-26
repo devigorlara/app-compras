@@ -1,5 +1,5 @@
 import 'package:app_compras/data/api/api_client.dart';
-import 'package:app_compras/models/api_response.dart';
+import 'package:app_compras/data/models/api_response.dart';
 import 'package:get/get.dart';
 
 class PopularProductRepo extends GetxService {

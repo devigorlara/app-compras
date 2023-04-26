@@ -1,12 +1,8 @@
-import 'package:app_compras/constant/decoration.dart';
-import 'package:app_compras/constant/route.dart';
-import 'package:app_compras/data/api/api_client.dart';
-import 'package:app_compras/data/repository/user_repo.dart';
-import 'package:app_compras/main.dart';
-import 'package:app_compras/view/home_view.dart';
+import 'package:app_compras/global/constant/decoration.dart';
+import 'package:app_compras/modules/home/views/home_view.dart';
 import 'package:flutter/material.dart';
-import 'package:app_compras/models/user.dart';
-import 'package:app_compras/controllers/login_controller.dart';
+import 'package:app_compras/data/models/user.dart';
+import 'package:app_compras/modules/login/controllers/login_controller.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:get/get.dart';
 

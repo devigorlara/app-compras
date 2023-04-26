@@ -1,5 +1,5 @@
-import 'package:app_compras/widgets/text.dart';
-import 'package:app_compras/utilities/dimensions.dart';
+import 'package:app_compras/global/widgets/text.dart';
+import 'package:app_compras/global/utilities/dimensions.dart';
 import 'package:flutter/material.dart';
 
 Row iconAndTextWidget(String label, IconData icon, Color? iconColor,

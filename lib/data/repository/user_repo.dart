@@ -1,6 +1,6 @@
-import 'package:app_compras/constant/api_constant.dart';
+import 'package:app_compras/global/constant/api_constant.dart';
 import 'package:app_compras/data/api/api_client.dart';
-import 'package:app_compras/models/api_response.dart';
+import 'package:app_compras/data/models/api_response.dart';
 import 'package:get/get.dart';
 
 class UserRepo extends GetxService {
